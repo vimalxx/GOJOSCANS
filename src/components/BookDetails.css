@@ -1,0 +1,24 @@
+.book-details-container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+.chapter-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.chapter-item {
+  padding: 0.75rem 1rem;
+  background: #f4f4f4;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.chapter-item:hover {
+  background: #e0e0e0;
+}
