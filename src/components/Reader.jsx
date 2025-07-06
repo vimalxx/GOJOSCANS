@@ -1,45 +1,88 @@
-import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import books from "../data/books";
-import "./Reader.css"; // Optional styling
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import {
+  Box,
+  Typography,
+  Stack,
+  Button,
+  ButtonGroup,
+  Divider
+} from "@mui/material";
 
 const Reader = () => {
   const { bookId, chapterIndex } = useParams();
-  const chapterNum = parseInt(chapterIndex) - 1;
-  const book = books[bookId];
+  const [book, setBook] = useState(null);
   const navigate = useNavigate();
+  const currentChapter = parseInt(chapterIndex, 10);
 
-  if (!book || !book.chapters[chapterNum]) {
-    return <h2>Chapter not found</h2>;
-  }
+  useEffect(() => {
+    fetch("/books.json")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to load book");
+        return res.json();
+      })
+      .then((data) => {
+        const found = data.find((b) => b.id === bookId);
+        if (found) setBook(found);
+        else throw new Error("Book not found");
+      })
+      .catch((err) => console.error(err));
+  }, [bookId]);
 
-  const chapterTitle = book.chapters[chapterNum];
+  if (!book) return <Typography>📖 Loading chapter...</Typography>;
 
-  const handleNavigation = (direction) => {
-    const newIndex = chapterNum + direction;
-    if (newIndex >= 0 && newIndex < book.chapters.length) {
-      navigate(`/book/${bookId}/read/${newIndex + 1}`);
-    }
+  const chapterContent = book.chapters[currentChapter];
+
+  const goToChapter = (index) => {
+    navigate(`/book/${book.id}/read/${index}`);
   };
 
   return (
-    <div className="reader-container">
-      <h1>{book.title}</h1>
-      <h2>{chapterTitle}</h2>
+    <Box sx={{ p: 3 }}>
+      <Stack direction="row" justifyContent="space-between" alignItems="center" mb={2}>
+        <Typography variant="h5">
+          {book.title} - Chapter {currentChapter + 1}
+        </Typography>
+        <Button
+          variant="outlined"
+          component={Link}
+          to="/"
+          size="small"
+        >
+          ⬅ Home
+        </Button>
+      </Stack>
 
-      <div className="chapter-content">
-        <p>This is the content of {chapterTitle}. Replace this with actual text, images, or PDF embedding.</p>
-      </div>
+      <Divider sx={{ mb: 3 }} />
 
-      <div className="reader-nav">
-        <button onClick={() => handleNavigation(-1)} disabled={chapterNum === 0}>
+      <Typography variant="body1" sx={{ mb: 5, lineHeight: 1.8 }}>
+        {chapterContent ? (
+          <>
+            <strong>📚 "{chapterContent}"</strong> content goes here. <br />
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec
+            justo a nisi tincidunt consequat. Integer vel leo quis nulla
+            lobortis faucibus. Sed nec urna sit amet elit egestas mattis.
+          </>
+        ) : (
+          "❌ Chapter not found."
+        )}
+      </Typography>
+
+      <ButtonGroup variant="contained">
+        <Button
+          onClick={() => goToChapter(currentChapter - 1)}
+          disabled={currentChapter === 0}
+        >
           ⬅ Previous
-        </button>
-        <button onClick={() => handleNavigation(1)} disabled={chapterNum === book.chapters.length - 1}>
+        </Button>
+        <Button
+          onClick={() => goToChapter(currentChapter + 1)}
+          disabled={currentChapter >= book.chapters.length - 1}
+        >
           Next ➡
-        </button>
-      </div>
-    </div>
+        </Button>
+      </ButtonGroup>
+    </Box>
   );
 };
 

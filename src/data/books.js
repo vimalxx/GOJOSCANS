@@ -1,24 +1,17 @@
-const books = {
-  book1: {
-    title: "The Time Machine",
-    author: "H.G. Wells",
-    description: "A time travel classic novel.",
-    chapters: [
-      "Chapter 1: The Time Traveller",
-      "Chapter 2: The Machine",
-      "Chapter 3: The Future"
-    ]
+// src/data/books.js
+const books = [
+  {
+    id: "book1",
+    title: "The Adventures of Nova",
+    description: "An exciting tale through code and cosmos.",
+    chapters: ["Chapter 1: The Beginning", "Chapter 2: Into the Loop"],
   },
-  book2: {
-    title: "1984",
-    author: "George Orwell",
-    description: "A dystopian social science fiction novel.",
-    chapters: [
-      "Chapter 1: Big Brother",
-      "Chapter 2: The Thought Police",
-      "Chapter 3: Room 101"
-    ]
-  }
-};
+  {
+    id: "book2",
+    title: "Code Chronicles",
+    description: "A story woven with logic and functions.",
+    chapters: ["Chapter 1: Variables", "Chapter 2: Conditions"],
+  },
+];
 
 export default books;

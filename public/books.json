@@ -1,0 +1,30 @@
+[
+  {
+    "id": "book-1",
+    "title": "The Quantum Paradox",
+    "description": "Dive into a world where physics meets imagination. A thrilling ride through time loops and multiverses.",
+    "chapters": ["Quantum Shift", "The Loop", "Entangled", "Final Collapse"],
+    "readChapters": 1
+  },
+  {
+    "id": "book-2",
+    "title": "Legends of Terra",
+    "description": "Ancient lore, forgotten realms, and the rise of a hero from the ashes of war.",
+    "chapters": ["Awakening", "The Sword", "Fallen King", "Rise Again", "Final Battle"],
+    "readChapters": 0
+  },
+  {
+    "id": "book-3",
+    "title": "Code of Silence",
+    "description": "A cyber-thriller where hacking isn’t just a skill, it’s survival.",
+    "chapters": ["Login", "Backdoor", "Firewall Breach", "Terminal Truth"],
+    "readChapters": 2
+  },
+  {
+    "id": "book-4",
+    "title": "Echoes of Eternity",
+    "description": "Every life leaves behind an echo. Some are louder than others.",
+    "chapters": ["First Light", "Whispers", "The Calling", "Resonance", "Fade to White"],
+    "readChapters": 0
+  }
+]

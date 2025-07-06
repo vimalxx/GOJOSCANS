@@ -1,36 +1,85 @@
-import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import books from "../data/books";
-import "./BookDetails.css"; // Optional for styling
+import { useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import {
+  Box,
+  Card,
+  CardContent,
+  Typography,
+  Button,
+  LinearProgress,
+  Stack
+} from "@mui/material";
 
 const BookDetails = () => {
   const { bookId } = useParams();
-  const navigate = useNavigate();
-  const book = books[bookId];
+  const [book, setBook] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  if (!book) {
-    return <h2>Book not found</h2>;
-  }
+  useEffect(() => {
+    fetch("/books.json")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to load book details.");
+        return res.json();
+      })
+      .then((data) => {
+        const selectedBook = data.find((b) => b.id === bookId);
+        if (!selectedBook) throw new Error("Book not found.");
+        setBook(selectedBook);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [bookId]);
+
+  if (loading) return <Typography>📖 Loading book...</Typography>;
+  if (error) return <Typography color="error">❌ {error}</Typography>;
 
   return (
-    <div className="book-details-container">
-      <h1>{book.title}</h1>
-      <p><strong>Author:</strong> {book.author}</p>
-      <p>{book.description}</p>
+    <Box sx={{ p: 3 }}>
+      <Card>
+        <CardContent>
+          <Typography variant="h4" gutterBottom>
+            {book.title}
+          </Typography>
 
-      <h3>Chapters:</h3>
-      <ul className="chapter-list">
-        {book.chapters.map((chapter, index) => (
-          <li
-            key={index}
-            onClick={() => navigate(`/book/${bookId}/read/${index + 1}`)}
-            className="chapter-item"
-          >
-            {chapter}
-          </li>
-        ))}
-      </ul>
-    </div>
+          <Typography variant="body1" paragraph>
+            {book.description}
+          </Typography>
+
+          <Typography variant="subtitle1">
+            Total Chapters: {book.chapters.length}
+          </Typography>
+
+          <LinearProgress
+            variant="determinate"
+            value={(book.readChapters / book.chapters.length) * 100}
+            sx={{ mt: 2, mb: 3 }}
+          />
+
+          <Stack direction="row" spacing={2}>
+            <Button
+              variant="contained"
+              component={Link}
+              to={`/book/${book.id}/read/${book.readChapters}`}
+            >
+              📘 Continue Reading
+            </Button>
+
+            <Button
+              variant="outlined"
+              color="secondary"
+              component={Link}
+              to="/"
+            >
+              ⬅ Back to Home
+            </Button>
+          </Stack>
+        </CardContent>
+      </Card>
+    </Box>
   );
 };
 
