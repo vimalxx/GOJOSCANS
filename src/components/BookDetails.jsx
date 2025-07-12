@@ -59,7 +59,7 @@ const BookDetails = () => {
             sx={{ mt: 2, mb: 3 }}
           />
 
-          <Stack direction="row" spacing={2}>
+          <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
             <Button
               variant="contained"
               component={Link}
@@ -77,6 +77,31 @@ const BookDetails = () => {
               ⬅ Back to Home
             </Button>
           </Stack>
+
+          {/* Chapter List */}
+          <Box sx={{ mt: 4 }}>
+            <Typography variant="h5" gutterBottom>
+              📚 Chapter List
+            </Typography>
+            <Stack spacing={1}>
+              {book.chapters.map((chapter, index) => (
+                <Button
+                  key={index}
+                  component={Link}
+                  to={`/book/${book.id}/read/${index}`}
+                  variant="outlined"
+                  sx={{
+                    justifyContent: "flex-start",
+                    textTransform: "none",
+                    fontWeight: "normal",
+                    pl: 2
+                  }}
+                >
+                  Chapter {index + 1}: {chapter.title}
+                </Button>
+              ))}
+            </Stack>
+          </Box>
         </CardContent>
       </Card>
     </Box>

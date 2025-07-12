@@ -1,30 +1,111 @@
 [
   {
     "id": "book-1",
-    "title": "The Quantum Paradox",
+    "title": "Quantum Paradox",
+    "cover": "/assets/book-1.webp",
     "description": "Dive into a world where physics meets imagination. A thrilling ride through time loops and multiverses.",
-    "chapters": ["Quantum Shift", "The Loop", "Entangled", "Final Collapse"],
+    "chapters": [
+      { "title": "Quantum Shift", "content": "The story begins with a mysterious quantum anomaly." },
+      { "title": "The Loop", "content": "Time folds back on itself. Choices repeat." },
+      { "title": "Entangled", "content": "Twist in the story of 'The Quantum Paradox'. Unexpected events occur." },
+      { "title": "Final Collapse", "content": "All timelines collide in a final paradox." }
+    ],
     "readChapters": 1
   },
   {
     "id": "book-2",
     "title": "Legends of Terra",
+    "cover": "/assets/book-2.webp",
     "description": "Ancient lore, forgotten realms, and the rise of a hero from the ashes of war.",
-    "chapters": ["Awakening", "The Sword", "Fallen King", "Rise Again", "Final Battle"],
+    "chapters": [
+      { "title": "Awakening", "content": "A new warrior awakens in the ruins of Terra." },
+      { "title": "The Sword", "content": "A legendary sword returns to its rightful heir." },
+      { "title": "Fallen King", "content": "The fallen king whispers from the grave." },
+      { "title": "Rise Again", "content": "The hero rebuilds hope from rubble." },
+      { "title": "Final Battle", "content": "A final showdown that decides Terra's fate." }
+    ],
     "readChapters": 0
   },
   {
     "id": "book-3",
     "title": "Code of Silence",
+    "cover": "/assets/book-3.webp",
     "description": "A cyber-thriller where hacking isn’t just a skill, it’s survival.",
-    "chapters": ["Login", "Backdoor", "Firewall Breach", "Terminal Truth"],
+    "chapters": [
+      { "title": "Login", "content": "Welcome to the underworld of code." },
+      { "title": "Backdoor", "content": "The hacker finds a government secret." },
+      { "title": "Firewall Breach", "content": "They break the unbreakable." },
+      { "title": "Terminal Truth", "content": "Everything they believed was a lie." }
+    ],
     "readChapters": 2
   },
   {
     "id": "book-4",
     "title": "Echoes of Eternity",
+    "cover": "/assets/book-4.webp",
     "description": "Every life leaves behind an echo. Some are louder than others.",
-    "chapters": ["First Light", "Whispers", "The Calling", "Resonance", "Fade to White"],
+    "chapters": [
+      { "title": "First Light", "content": "Echoes begin with the first cry." },
+      { "title": "Whispers", "content": "Whispers from the beyond stir memories." },
+      { "title": "The Calling", "content": "The past calls out to be remembered." },
+      { "title": "Resonance", "content": "Voices merge in haunting harmony." },
+      { "title": "Fade to White", "content": "The final echo fades into silence." }
+    ],
+    "readChapters": 0
+  },
+  {
+    "id": "book-5",
+    "title": "Neon Skyline",
+    "cover": "/assets/book-5.webp",
+    "description": "Futuristic noir through the glowing alleys of Neo Tokyo.",
+    "chapters": [
+      { "title": "Night Pulse", "content": "The city never sleeps." },
+      { "title": "Pixel Storm", "content": "Digital and human merge." }
+    ],
+    "readChapters": 0
+  },
+  {
+    "id": "book-6",
+    "title": "Chrono Drifters",
+    "cover": "/assets/book-6.webp",
+    "description": "Two time travelers. One broken clock. Infinite timelines.",
+    "chapters": [
+      { "title": "Crashpoint", "content": "Time fractures at the jump." },
+      { "title": "Split Paths", "content": "Two timelines, one choice." }
+    ],
+    "readChapters": 0
+  },
+  {
+    "id": "book-7",
+    "title": "Forest of Whispers",
+    "cover": "/assets/book-7.webp",
+    "description": "In a haunted forest, every step tells a story.",
+    "chapters": [
+      { "title": "The Roots", "content": "The deeper you go, the louder it gets." },
+      { "title": "Thorn Path", "content": "Some stories hurt." }
+    ],
+    "readChapters": 0
+  },
+  {
+    "id": "book-8",
+    "title": "Skybound",
+    "cover": "/assets/book-8.webp",
+    "description": "A steampunk adventure among floating islands and airships.",
+    "chapters": [
+      { "title": "Lift-Off", "content": "The airship rises above the storm." },
+      { "title": "The Rift", "content": "A tear in the clouds reveals a secret." }
+    ],
+    "readChapters": 0
+  },
+  {
+    "id": "book-9",
+    "title": "Digital Abyss",
+    "cover": "/assets/book-9.webp",
+    "description": "When the AI becomes self-aware, will it destroy or evolve?",
+    "chapters": [
+      { "title": "Singularity", "content": "Awakening from silence." },
+      { "title": "Echo Loop", "content": "The system repeats endlessly." }
+    ],
     "readChapters": 0
   }
 ]

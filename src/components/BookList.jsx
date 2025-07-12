@@ -42,7 +42,7 @@ const BookList = () => {
         gutterBottom
         sx={{ fontWeight: "bold", mb: 2, textAlign: "center" }}
       >
-        🔥 Welcome to <span style={{ color: "#1976d2" }}>NOVASCANS</span>
+        <span style={{ color: "#1976d2" }}>NOVASCANS</span>
       </Typography>
 
       <TextField
@@ -77,6 +77,9 @@ const BookList = () => {
                 elevation={5}
                 sx={{
                   borderRadius: "14px",
+                  width: 150,
+                  display: "flex",
+                  flexDirection: "row",
                   transition: "transform 0.3s ease, box-shadow 0.3s ease",
                   "&:hover": {
                     transform: "scale(1.03)",
