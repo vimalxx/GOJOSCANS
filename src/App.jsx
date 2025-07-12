@@ -1,11 +1,20 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import { createTheme, ThemeProvider, CssBaseline, IconButton } from "@mui/material";
+import {
+  createTheme,
+  ThemeProvider,
+  CssBaseline,
+  IconButton,
+  CircularProgress,
+  Box
+} from "@mui/material";
 import { Brightness4, Brightness7 } from "@mui/icons-material";
 import ScrollToTop from "./components/ScrollToTop";
-import BookList from "./components/BookList";
-import BookDetails from "./components/BookDetails";
-import Reader from "./components/Reader";
+
+// 🧠 Lazy loaded components for code-splitting
+const BookList = lazy(() => import("./components/BookList"));
+const BookDetails = lazy(() => import("./components/BookDetails"));
+const Reader = lazy(() => import("./components/Reader"));
 
 function App() {
   const storedTheme = localStorage.getItem("mui-theme") || "light";
@@ -40,7 +49,7 @@ function App() {
       <ScrollToTop />
 
       <div style={{ padding: "1rem", position: "relative" }}>
-        {/* Toggle Button */}
+        {/* Theme Toggle Button */}
         <IconButton
           onClick={toggleTheme}
           color="inherit"
@@ -49,13 +58,26 @@ function App() {
           {mode === "dark" ? <Brightness7 /> : <Brightness4 />}
         </IconButton>
 
-        {/* Routing */}
-        <Routes>
-          <Route path="/" element={<BookList />} />
-          <Route path="/book/:bookId" element={<BookDetails />} />
-          <Route path="/book/:bookId/read/:chapterIndex" element={<Reader />} />
-          <Route path="*" element={<h2>404 - Page Not Found</h2>} />
-        </Routes>
+        {/* Suspense fallback to show while lazy components load */}
+        <Suspense
+          fallback={
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              minHeight="60vh"
+            >
+              <CircularProgress />
+            </Box>
+          }
+        >
+          <Routes>
+            <Route path="/" element={<BookList />} />
+            <Route path="/book/:bookId" element={<BookDetails />} />
+            <Route path="/book/:bookId/read/:chapterIndex" element={<Reader />} />
+            <Route path="*" element={<h2>404 - Page Not Found</h2>} />
+          </Routes>
+        </Suspense>
       </div>
     </ThemeProvider>
   );
